@@ -4,6 +4,6 @@
 **CalendarApp** is a React-based application designed to manage and organize your calendar events efficiently.
 
 ## Project Status
-- [x] **Project Skeleton**:
+- [x] **Project Skeleton**
 - [x] **Authentication**
 - [ ] **Backend Integration (CRUD)**
