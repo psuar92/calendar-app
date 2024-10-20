@@ -6,4 +6,4 @@
 ## Project Status
 - [x] **Project Skeleton**
 - [x] **Authentication**
-- [ ] **Backend Integration (CRUD)**
+- [x] **Backend Integration (CRUD)**
