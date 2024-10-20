@@ -1,9 +1,18 @@
-import { Calendar } from 'react-big-calendar';
+import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { CalendarEvent, CalendarModal, FabAddNew, FabDelete, Navbar } from '../';
-import { localizer, getMessagesES } from '../../helpers/';
 import { useEffect, useState } from 'react';
 import { useAuthStore, useCalendarStore, useUiStore } from '../../hooks';
+import { format, parse, startOfWeek, getDay } from 'date-fns';
+import locales from 'date-fns/locale/en-US';
+
+const localizer = dateFnsLocalizer({
+    format,
+    parse,
+    startOfWeek,
+    getDay,
+    locales
+});
 
 export const CalendarPage = () => {
 
@@ -13,16 +22,7 @@ export const CalendarPage = () => {
 
     const { events, setActiveEvent, startLoadingEvents } = useCalendarStore();
 
-    const [lang, setLang] = useState(() => {
-        const storedLang = localStorage.getItem('lang');
-        return storedLang || 'enUS';
-    });
-
     const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'week');
-
-    useEffect(() => {
-        localStorage.setItem('lang', lang);
-    }, [lang]);
 
     const eventStyleGetter = (event, start, end, isSelected) => {
 
@@ -74,17 +74,15 @@ export const CalendarPage = () => {
 
     return (
         <>
-            <Navbar changeLang={setLang} lang={lang} />
+            <Navbar />
 
             <Calendar
-                culture={(lang === 'enUS') ? 'enUS' : 'es'}
                 localizer={localizer}
                 events={events}
                 defaultView={lastView}
                 startAccessor='start'
                 endAccessor='end'
                 style={{ height: 'calc(100vh - 80px)' }}
-                messages={(lang === 'enUS') ? '' : getMessagesES()}
                 eventPropGetter={eventStyleGetter}
                 components={{
                     event: CalendarEvent
@@ -94,7 +92,7 @@ export const CalendarPage = () => {
                 onView={onViewChanged}
             />
 
-            <CalendarModal lang={lang} />
+            <CalendarModal />
 
             <FabAddNew />
             <FabDelete />

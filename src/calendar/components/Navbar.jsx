@@ -1,14 +1,6 @@
-import { translations } from '../../helpers';
 import { useAuthStore } from '../../hooks';
 
-export const Navbar = ({changeLang, lang}) => {
-
-    const onChangeLang = () => {
-        changeLang(lang === 'enUS' ? 'es' : 'enUS');
-    }
-
-    const locale = translations[lang];
-
+export const Navbar = () => {
     const { startLogout, user } = useAuthStore();
     
     return (
@@ -19,16 +11,10 @@ export const Navbar = ({changeLang, lang}) => {
                     {user.name}
             </span>
 
-            <button className='btn btn-outline-info' onClick={onChangeLang}>
-                <i className='fa-solid fa-globe'></i>
-                &nbsp;
-                EN/ES
-            </button>
-
             <button className='btn btn-outline-danger' onClick={startLogout}>
                 <i className='fas fa-sign-out-alt'></i>
                 &nbsp;
-                <span>{locale.logout}</span>
+                <span>Logout</span>
             </button>
         </div>
     );

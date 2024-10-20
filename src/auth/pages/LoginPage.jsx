@@ -49,13 +49,13 @@ export const LoginPage = () => {
         <div className='container login-container'>
             <div className='row'>
                 <div className='col-md-6 login-form-1'>
-                    <h3>Ingreso</h3>
+                    <h3>Sign In</h3>
                     <form onSubmit={loginSubmit}>
                         <div className='form-group mb-2'>
                             <input 
                                 type='text'
                                 className='form-control'
-                                placeholder='Correo'
+                                placeholder='Email'
                                 name='loginEmail'
                                 value={loginEmail}
                                 onChange={onLoginInputChange}
@@ -65,7 +65,7 @@ export const LoginPage = () => {
                             <input
                                 type='password'
                                 className='form-control'
-                                placeholder='Contraseña'
+                                placeholder='Password'
                                 name='loginPassword'
                                 value={loginPassword}
                                 onChange={onLoginInputChange}
@@ -82,13 +82,13 @@ export const LoginPage = () => {
                 </div>
 
                 <div className='col-md-6 login-form-2'>
-                    <h3>Registro</h3>
+                    <h3>Sign Up</h3>
                     <form onSubmit={signUpSubmit}>
                         <div className='form-group mb-2'>
                             <input
                                 type='text'
                                 className='form-control'
-                                placeholder='Nombre'
+                                placeholder='Name'
                                 name='signUpName'
                                 value={signUpName}
                                 onChange={onSignUpInputChange}
@@ -98,7 +98,7 @@ export const LoginPage = () => {
                             <input
                                 type='email'
                                 className='form-control'
-                                placeholder='Correo'
+                                placeholder='Email'
                                 name='signUpEmail'
                                 value={signUpEmail}
                                 onChange={onSignUpInputChange}
@@ -108,7 +108,7 @@ export const LoginPage = () => {
                             <input
                                 type='password'
                                 className='form-control'
-                                placeholder='Contraseña' 
+                                placeholder='Password' 
                                 name='signUpPassword'
                                 value={signUpPassword}
                                 onChange={onSignUpInputChange}
@@ -119,7 +119,7 @@ export const LoginPage = () => {
                             <input
                                 type='password'
                                 className='form-control'
-                                placeholder='Repita la contraseña' 
+                                placeholder='Repeat password' 
                                 name='signUpPassword2'
                                 value={signUpPassword2}
                                 onChange={onSignUpInputChange}
@@ -130,7 +130,7 @@ export const LoginPage = () => {
                             <input 
                                 type='submit' 
                                 className='btnSubmit w-100' 
-                                value='Crear cuenta' />
+                                value='Create account' />
                         </div>
                     </form>
                 </div>

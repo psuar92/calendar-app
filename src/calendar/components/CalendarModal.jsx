@@ -1,15 +1,11 @@
 import Modal from 'react-modal';
-import DatePicker, { registerLocale } from 'react-datepicker';
-import es from 'date-fns/locale/es'
+import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import { useCalendarStore, useUiStore } from '../../hooks';
 import { useEffect, useMemo, useState } from 'react';
 import { addHours, differenceInSeconds } from 'date-fns';
 import Swal from 'sweetalert2';
-import { translations } from '../../helpers';
-
-registerLocale('es', es)
 
 const customStyles = {
     content: {
@@ -69,8 +65,6 @@ export const CalendarModal = ({ lang }) => {
         });
     };
 
-    const locale = translations[lang];
-
     const onSubmit = async(event) => {
         event.preventDefault();
         setFormSubmitted(true);
@@ -87,7 +81,6 @@ export const CalendarModal = ({ lang }) => {
         closeDateModal();
         setFormSubmitted(false);
     };
-
     return (
         <Modal
             isOpen={isDateModalOpen}
@@ -97,28 +90,25 @@ export const CalendarModal = ({ lang }) => {
             overlayClassName='modal-bg'
             closeTimeoutMS={200}
         >
-            <h1> {locale.newEvent}</h1>
+            <h1> New event</h1>
             <hr />
             <form className='container' onSubmit={onSubmit}>
 
                 <div className='form-group mb-2'>
-                    <label> {locale.dateAndStartTime}</label>
+                    <label> Date and start time</label>
                     <DatePicker
-                        locale={(lang === 'es') ? 'es' : ''}
                         wrapperClassName='form-control'
                         selected={formValues.start}
                         className='form-control'
                         onChange={(event) => onDateChanged(event, 'start')}
                         dateFormat='Pp'
                         showTimeSelect
-                        timeCaption={locale.time}
                     />
                 </div>
 
                 <div className='form-group mb-2'>
-                    <label> {locale.dateAndEndTime} </label>
+                    <label> Date and end time </label>
                     <DatePicker
-                        locale={(lang === 'es') ? 'es' : ''}
                         wrapperClassName='form-control'
                         minDate={formValues.start}
                         selected={formValues.end}
@@ -126,36 +116,35 @@ export const CalendarModal = ({ lang }) => {
                         onChange={(event) => onDateChanged(event, 'end')}
                         dateFormat='Pp'
                         showTimeSelect
-                        timeCaption={locale.time}
                     />
                 </div>
 
                 <hr />
                 <div className='form-group mb-2'>
-                    <label>{locale.titleAndNotes}</label>
+                    <label>Title and notes</label>
                     <input
                         type='text'
                         className={`form-control ${titleClass}`}
-                        placeholder={locale.eventTitle}
+                        placeholder='Event title'
                         name='title'
                         autoComplete='off'
                         value={formValues.title}
                         onChange={onInputChange}
                     />
-                    <small id='emailHelp' className='form-text text-muted'>{locale.aShortDescription}</small>
+                    <small id='emailHelp' className='form-text text-muted'>A short description</small>
                 </div>
 
                 <div className='form-group mb-2'>
                     <textarea
                         type='text'
                         className='form-control'
-                        placeholder={locale.notes}
+                        placeholder='Notes'
                         rows='5'
                         name='notes'
                         value={formValues.notes}
                         onChange={onInputChange}
                     ></textarea>
-                    <small id='emailHelp' className='form-text text-muted'>{locale.additionalInfo}</small>
+                    <small id='emailHelp' className='form-text text-muted'>Additional information</small>
                 </div>
 
                 <button
@@ -163,7 +152,7 @@ export const CalendarModal = ({ lang }) => {
                     className='btn btn-outline-primary'
                 >
                     <i className='far fa-save'></i>
-                    <span> {locale.save}</span>
+                    <span> Save</span>
                 </button>
 
             </form>
