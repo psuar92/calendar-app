@@ -3,13 +3,15 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { CalendarEvent, CalendarModal, FabAddNew, FabDelete, Navbar } from '../';
 import { localizer, getMessagesES } from '../../helpers/';
 import { useEffect, useState } from 'react';
-import { useCalendarStore, useUiStore } from '../../hooks';
+import { useAuthStore, useCalendarStore, useUiStore } from '../../hooks';
 
 export const CalendarPage = () => {
 
+    const { user } = useAuthStore();
+
     const { openDateModal } = useUiStore();
-    
-    const { events, setActiveEvent } = useCalendarStore();
+
+    const { events, setActiveEvent, startLoadingEvents } = useCalendarStore();
 
     const [lang, setLang] = useState(() => {
         const storedLang = localStorage.getItem('lang');
@@ -24,8 +26,10 @@ export const CalendarPage = () => {
 
     const eventStyleGetter = (event, start, end, isSelected) => {
 
+        const isMyEvent = (user.uid === event.user._id) || (user.uid === event.user.uid);
+
         const style = {
-            backgroundColor: '#347CF7',
+            backgroundColor: isMyEvent ? '#347CF7' : '#465660',
             borderRadius: '3px',
             opacity: 0.8,
             color: 'white',
@@ -49,6 +53,25 @@ export const CalendarPage = () => {
         setLastView(event);
     }
 
+    const handleKeyPress = (event) => {
+        if (event.key === 'Escape') {
+            setActiveEvent(null);
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener('keydown', handleKeyPress);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyPress);
+        };
+    }, []);
+
+    useEffect(() => {
+        startLoadingEvents();
+    }, [])
+
+
     return (
         <>
             <Navbar changeLang={setLang} lang={lang} />
@@ -71,7 +94,7 @@ export const CalendarPage = () => {
                 onView={onViewChanged}
             />
 
-            <CalendarModal lang={lang}/>
+            <CalendarModal lang={lang} />
 
             <FabAddNew />
             <FabDelete />
