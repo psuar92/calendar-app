@@ -7,3 +7,7 @@
 - [x] **Project Skeleton**
 - [x] **Authentication**
 - [x] **Backend Integration (CRUD)**
+
+## Project Demo
+
+Check out the project here: [Calendar App](https://calendar-backend-zp2b.onrender.com/)
