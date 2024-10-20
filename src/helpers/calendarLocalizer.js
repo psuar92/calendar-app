@@ -30,6 +30,7 @@ export const translations = {
       time: 'Time',
       incorrectDates: 'Incorrect dates',
       checkEnteredDates: 'Check entered dates',
+      logout: 'Logout',
     },
     es: {
       newEvent: 'Nuevo evento',
@@ -44,5 +45,6 @@ export const translations = {
       time: 'Hora',
       incorrectDates: 'Fechas incorrectas',
       checkEnteredDates: 'Compruebe las fechas ingresadas',
+      logout: 'Cerrar sesión',
     },
   };
