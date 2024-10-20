@@ -3,7 +3,6 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import es from 'date-fns/locale/es'
 import 'react-datepicker/dist/react-datepicker.css';
 import 'sweetalert2/dist/sweetalert2.min.css';
-import { useModal } from '../hooks';
 import { useCalendarStore, useUiStore } from '../../hooks';
 import { useEffect, useMemo, useState } from 'react';
 import { addHours, differenceInSeconds } from 'date-fns';
