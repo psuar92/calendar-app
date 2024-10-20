@@ -5,6 +5,5 @@
 
 ## Project Status
 - [x] **Project Skeleton**:
-- [x] **Calendar Functionality**
-- [ ] **Backend Integration**
-- [ ] **Authentication**
+- [x] **Authentication**
+- [ ] **Backend Integration (CRUD)**
