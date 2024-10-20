@@ -28,7 +28,6 @@ export const useCalendarStore = () => {
 
             // Creating notes
             const { data } = await calendarApi.post('/events', calendarEvent);
-            console.log({ data });
             dispatch(onAddNewEvent({ ...calendarEvent, id: data.event.id, user }));
         } catch (error) {
             // Error management
